@@ -38,6 +38,19 @@ javafx {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    /*
+    //Für die LLM API wird folgendes benötigt:
+    implementation("com.theokanning.openai-gpt3-java:client:0.18.2")
+
+
+    //Test2:
+    implementation("io.github.sashirestela:simple-openai:[simple-openai_latest_version]")
+    /* OkHttp dependency is optional if you decide to use it with simple-openai */
+    implementation("com.squareup.okhttp3:okhttp:[okhttp_latest_version]")
+    */
+    //Test3:
+    implementation("com.google.code.gson:gson:2.10.1")
 }
 
 tasks.withType<Test> {
