@@ -15,7 +15,7 @@ public class WeatherApi {
     private static final String API_KEY = "8d70c3c6ff67fc01f5fc58fb531d9e3b";
 
     // Standort, für den Sie das Wetter abrufen möchten
-    private static final String CITY_NAME = "Munich";
+    private static final String CITY_NAME = "Berlin";
 
     // Basiskonstanten
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
