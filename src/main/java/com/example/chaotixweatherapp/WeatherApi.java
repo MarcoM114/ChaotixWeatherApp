@@ -1,11 +1,3 @@
-/*
-Diese Klasse dient für die Abrage an die OpenWeatherMap API, um die Daten zu bekommen.
-ANhand des API keys kann man eine http Abfrage machen, und man bekommt eine JSON als Antwort
-Es wird die JSON Datei mithilfe von GJSON interpretiert und in Variablen der Klasse gespeichert
-
-Sobalt diese Klasse instanziert wird, muss ein Stnadort übergeben werden.
-Mithilfe von methoden kann man nun auf die Datensätze zugreifen (getter Methoden)
- */
 
 package com.example.chaotixweatherapp;
 
@@ -18,16 +10,25 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import com.google.gson.Gson;
 
+/*
+Diese Klasse dient für die Abrage an die OpenWeatherMap API, um die Daten zu bekommen.
+ANhand des API keys kann man eine http Abfrage machen, und man bekommt eine JSON als Antwort
+Es wird die JSON Datei mithilfe von GJSON interpretiert und in Variablen der Klasse gespeichert
+
+Sobalt diese Klasse instanziert wird, muss ein Stnadort übergeben werden.
+Mithilfe von methoden kann man nun auf die Datensätze zugreifen (getter Methoden)
+ */
 public class WeatherApi {
 
     private String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
     private final String API_KEY = "8d70c3c6ff67fc01f5fc58fb531d9e3b";
     private String location;
+    private String actualLocation;
     private Double temp;
     private String description;
     private int weatherID;
 
-    private String testUrl;
+    private String testUrl; // Für Test zwecke
 
     //units = "metric" für°C
 
@@ -38,8 +39,8 @@ public class WeatherApi {
         String encodedCityName = URLEncoder.encode(this.location, StandardCharsets.UTF_8);
         String finalUrl = String.format("%s?q=%s&appid=%s&units=%s",
                 baseUrl, encodedCityName, API_KEY, units);
+        this.testUrl = finalUrl; //Testzwecke
 
-        this.testUrl = finalUrl;
         // 2. HTTP-Client und Request erstellen
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -58,6 +59,7 @@ public class WeatherApi {
                 WeatherJson.WeatherToGet weatherData = gson.fromJson(jsonResponse, WeatherJson.WeatherToGet.class);
 
                 // 6. Ergebnisse in Variablen speichern:
+                this.actualLocation = weatherData.name;
                 this.temp = weatherData.main.temp;
                 this.description = weatherData.weather[0].description;
                 this.weatherID = weatherData.weather[0].id;
@@ -75,12 +77,28 @@ public class WeatherApi {
         }
     }
 
-    public static void main(String[] args) {
-        WeatherApi test = new WeatherApi("Wien", "metric");
+    public String getActualLocation() {
+        return actualLocation;
+    }
 
-        System.out.println(test.temp);
-        System.out.println(test.description);
-        System.out.println(test.weatherID);
+    public Double getTemp() {
+        return temp;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getWeatherID() {
+        return weatherID;
+    }
+
+    public static void main(String[] args) {
+        WeatherApi test = new WeatherApi("x", "metric");
+
+        System.out.println(test.getActualLocation());
+        System.out.println(test.getTemp());
+        System.out.println(test.getDescription());
     }
 }
 
