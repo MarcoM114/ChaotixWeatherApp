@@ -27,18 +27,20 @@ public class WeatherApi {
     private Double temp;
     private String description;
     private int weatherID;
+    private String unit;
 
     private String testUrl; // Für Test zwecke
 
-    //units = "metric" für°C
+    //units = "Celsius" ODER "Fahrenheit"
 
-    public WeatherApi(String location, String units){
+
+    public WeatherApi(String location, String unit){
         this.location = location;
 
         // 1. URL zusammenstellen
         String encodedCityName = URLEncoder.encode(this.location, StandardCharsets.UTF_8);
         String finalUrl = String.format("%s?q=%s&appid=%s&units=%s",
-                baseUrl, encodedCityName, API_KEY, units);
+                baseUrl, encodedCityName, API_KEY, "metric"); // "metric" --> Return in °C
         this.testUrl = finalUrl; //Testzwecke
 
         // 2. HTTP-Client und Request erstellen
@@ -58,9 +60,16 @@ public class WeatherApi {
                 Gson gson = new Gson();
                 WeatherJson.WeatherToGet weatherData = gson.fromJson(jsonResponse, WeatherJson.WeatherToGet.class);
 
-                // 6. Ergebnisse in Variablen speichern:
+                //Temperatur Umrechnung °C in Fahrenheit, wenn nötig:
+                if (unit == "Celsius"){
+                    this.temp = weatherData.main.temp; //Weil Abfrage return in °C wegen "metric"
+                }
+                else {
+                    this.temp = (weatherData.main.temp * (9/5) +32);
+                }
+
+                // 6. Restliche Ergebnisse in Variablen speichern:
                 this.actualLocation = weatherData.name;
-                this.temp = weatherData.main.temp;
                 this.description = weatherData.weather[0].description;
                 this.weatherID = weatherData.weather[0].id;
 
@@ -94,7 +103,7 @@ public class WeatherApi {
     }
 
     public static void main(String[] args) {
-        WeatherApi test = new WeatherApi("x", "metric");
+        WeatherApi test = new WeatherApi("Klagenfurt", "Fahrenheit");
 
         System.out.println(test.getActualLocation());
         System.out.println(test.getTemp());
