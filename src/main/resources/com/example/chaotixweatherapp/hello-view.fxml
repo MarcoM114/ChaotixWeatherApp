@@ -19,18 +19,15 @@
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <!-- Logo-->
     <ImageView fitWidth="350" preserveRatio="true">
         <image>
             <Image url="@chaotix_weather.png"/>
         </image>
     </ImageView>
 
-    <!-- Titel -->
     <Label text="Bitte wählen Sie aus:"
            style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
 
-    <!-- toggles -->
     <HBox spacing="20" alignment="CENTER">
         <ComboBox fx:id="locationBox"
                   promptText="Standort"
@@ -41,8 +38,8 @@
                   prefWidth="180"/>
     </HBox>
 
-    <!-- OK knopf -->
-    <Button text="OK"
+    <Button fx:id="okButton"
+            text="OK"
             prefWidth="120"
             onAction="#onOkClick"
             style="-fx-font-size: 14px;"/>

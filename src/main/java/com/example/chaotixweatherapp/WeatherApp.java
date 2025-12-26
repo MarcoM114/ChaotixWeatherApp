@@ -11,8 +11,10 @@ public class WeatherApp extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(
-                WeatherApp.class.getResource("hello-view.fxml")
+                WeatherApp.class.getResource("/com/example/chaotixweatherapp/hello-view.fxml")
         );
+
+
 
         Scene scene = new Scene(loader.load());
         stage.setTitle("Marco Miklautz, Bianca Plattner, Yasaman Ebrahimi");
