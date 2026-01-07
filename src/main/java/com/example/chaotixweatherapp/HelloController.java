@@ -41,7 +41,7 @@ public class HelloController {
         System.out.println("Einheit: " + unit);
 
         FXMLLoader loader = new FXMLLoader(
-                WeatherApp.class.getResource("/com/example/chaotixweatherapp/weather-view.fxml")
+                WeatherApp.class.getResource("weather-view.fxml")
         );
 
         Parent root = loader.load();

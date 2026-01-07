@@ -5,50 +5,33 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER"
-      spacing="18"
-      xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.chaotixweatherapp.WeatherController">
+<VBox alignment="CENTER" prefHeight="472.0" prefWidth="492.0" spacing="25" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.WeatherController">
 
     <padding>
-        <Insets top="24" right="24" bottom="24" left="24"/>
+        <Insets bottom="30" left="30" right="30" top="30" />
     </padding>
 
-    <!-- Logo (optional) -->
-    <ImageView fitWidth="280" preserveRatio="true">
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button onAction="#onBackClick" prefHeight="22.0" prefWidth="27.0" style="-fx-font-size: 10;" text="&lt;" />
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <ImageView fitWidth="350" preserveRatio="true">
         <image>
-            <Image url="@chaotix_weather.png"/>
+            <Image url="@chaotix_weather.png" />
         </image>
     </ImageView>
 
-    <!-- "In Wien hat es gerade:" -->
-    <Label fx:id="headlineLabel"
-           text="In ___ hat es gerade:"
-           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <Label fx:id="headlineLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="In ___ hat es gerade:" />
 
-    <!-- temperature -->
-    <Label fx:id="tempLabel"
-           text="0 °C"
-           style="-fx-font-size: 40px; -fx-font-weight: bold;"/>
+    <Label fx:id="tempLabel" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="0 °C" />
 
-    <!-- condition -->
-    <Label fx:id="conditionLabel"
-           text="Es schneit:"
-           style="-fx-font-size: 16px;"/>
+    <Label fx:id="conditionLabel" style="-fx-font-size: 22px;" text="Es schneit:" />
 
-<!--    &lt;!&ndash; icon &ndash;&gt;-->
-<!--    <ImageView fx:id="iconView" fitWidth="120" preserveRatio="true">-->
-<!--        <image>-->
-<!--            <Image url="@snowflake.png"/>-->
-<!--        </image>-->
-<!--    </ImageView>-->
+    <ImageView fx:id="iconView" fitWidth="120" preserveRatio="true" />
 
-    <!-- back -->
-    <Button text="Zurück zum Startbildschirm"
-            onAction="#onBackClick"
-            style="-fx-font-size: 14px;"
-            prefWidth="260"/>
 </VBox>
