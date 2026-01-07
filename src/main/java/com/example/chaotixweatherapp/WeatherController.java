@@ -9,15 +9,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+
+
 import java.io.IOException;
 
 public class WeatherController {
+
+    String unitSymbol;
 
     @FXML
     private Label headlineLabel;
 
     @FXML
     private Label tempLabel;
+
+    @FXML
+    private Label descripLabel;
 
     @FXML
     private Label conditionLabel;
@@ -27,32 +34,33 @@ public class WeatherController {
 
     private final API api = new API();
 
+
     /**
      * Call this right after loading the FXML (from HelloController).
      */
-    public void initData(String city, String unit) {
-        WeatherData data = api.getWeather(city);
+    public void initData(String city, String unit, String[] weatherData) {
 
-        int shownTemp = data.tempC();
-        String unitSymbol = "°C";
 
-        if ("Fahrenheit".equalsIgnoreCase(unit)) {
-            shownTemp = (int) Math.round((data.tempC() * 9.0 / 5.0) + 32);
+
+        if (unit == "Celsius"){
+            unitSymbol ="°C";
+        }else {
             unitSymbol = "°F";
         }
 
         headlineLabel.setText("In " + city + " hat es gerade:");
-        tempLabel.setText(shownTemp + " " + unitSymbol);
-        conditionLabel.setText(data.description() + ":");
+        tempLabel.setText(weatherData[0] + " " + unitSymbol);
+        conditionLabel.setText(weatherData[1] + ":");
 
         // optional icon switch
         // put files like snowflake.png / rain.png into resources same folder as FXML
+        /*
         String iconFile = switch (data.iconKey()) {
             case "snow" -> "snowflake.png";
             case "rain" -> "rain.png";
             case "sun"  -> "sun.png";
             default     -> "cloud.png";
-        };
+            };
 
         try {
             Image img = new Image(getClass().getResourceAsStream(iconFile));
@@ -60,6 +68,8 @@ public class WeatherController {
         } catch (Exception ignored) {
             // if icon missing, just keep whatever is set in FXML
         }
+
+         */
     }
 
     @FXML

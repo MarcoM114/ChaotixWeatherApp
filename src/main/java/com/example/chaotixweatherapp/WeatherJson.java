@@ -4,18 +4,18 @@ package com.example.chaotixweatherapp;
 
 public class WeatherJson {
 
-    class Main{
+    public class Main{
         double temp;
         int pressure;
         int humidity;
     }
 
-    class Weather{
+    public class Weather{
         int id;
         String description;
     }
 
-    class WeatherToGet{
+    public class WeatherToGet{
         String name;
         Weather[] weather;
         Main main;

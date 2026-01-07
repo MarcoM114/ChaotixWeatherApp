@@ -5,6 +5,7 @@ module com.example.chaotixweatherapp {
     requires com.google.gson;
 
 
-    opens com.example.chaotixweatherapp to javafx.fxml;
+    opens com.example.chaotixweatherapp to javafx.fxml, com.google.gson;
+
     exports com.example.chaotixweatherapp;
 }

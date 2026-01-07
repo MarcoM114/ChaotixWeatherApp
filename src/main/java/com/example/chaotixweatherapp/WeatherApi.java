@@ -28,13 +28,17 @@ public class WeatherApi {
     private String description;
     private int weatherID;
     private String unit;
+    private String[] dataW = new String[2]; //return wert der Methode
 
     private String testUrl; // Für Test zwecke
 
     //units = "Celsius" ODER "Fahrenheit"
 
+    public WeatherApi() {
+    }
 
-    public WeatherApi(String location, String unit){
+
+    public String[] getWeatherData(String location, String unit){
         this.location = location;
 
         // 1. URL zusammenstellen
@@ -73,6 +77,9 @@ public class WeatherApi {
                 this.description = weatherData.weather[0].description;
                 this.weatherID = weatherData.weather[0].id;
 
+                this.dataW[0] = Double.toString(this.temp);
+                this.dataW[1] = this.description;
+
 
             //Wenn Fehler auftritt wird dies Ausgegeben:
             } else {
@@ -85,6 +92,8 @@ public class WeatherApi {
             e.printStackTrace();
             System.err.println("❌ Fehler beim Senden der HTTP-Anfrage: " + e.getMessage());
         }
+
+        return this.dataW; //Gibt die Wetterdaten zurück als Array von Strings
     }
 
     public String getActualLocation() {
@@ -103,12 +112,22 @@ public class WeatherApi {
         return weatherID;
     }
 
+    /*
     public static void main(String[] args) {
-        WeatherApi test = new WeatherApi("Klagenfurt", "Fahrenheit");
 
-        System.out.println(test.getActualLocation());
-        System.out.println(test.getTemp());
-        System.out.println(test.getDescription());
+        WeatherApi test = new WeatherApi();
+
+        String[] data;
+
+        data = test.getWeatherData("Wien", "Celsius");
+
+        System.out.println(data[0]);
+        System.out.println(data[1]);
+
+
+
     }
+
+     */
 }
 

@@ -1,5 +1,7 @@
 package com.example.chaotixweatherapp;
 import com.example.chaotixweatherapp.WeatherApi;
+import com.google.gson.Gson;
+import com.example.chaotixweatherapp.WeatherJson;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloController {
+
+    // Array von API Klasse
+    String[] weatherData = new String[2];
+    WeatherApi weatherApi = new WeatherApi();
 
     @FXML
     private ComboBox<String> locationBox;
@@ -35,10 +41,11 @@ public class HelloController {
     @FXML
     private void onOkClick() throws IOException {
 
-
         String city = locationBox.getValue();
         String unit = unitBox.getValue();
-        WeatherApi test = new WeatherApi(locationBox.getValue(), "Celsius");
+
+        // Abfrage an die API; return String Array; data[0]=temp   data[1]=description
+        weatherData = weatherApi.getWeatherData(city, unit);
 
         System.out.println("OK geklickt");
         System.out.println("Standort: " + city);
@@ -51,7 +58,7 @@ public class HelloController {
         Parent root = loader.load();
 
         WeatherController controller = loader.getController();
-        controller.initData(city, unit);
+        controller.initData(city, unit, weatherData);  //Daten werden an anderen Controller übergeben
 
         Stage stage = (Stage) okButton.getScene().getWindow();
         stage.setScene(new Scene(root));
