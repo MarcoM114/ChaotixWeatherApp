@@ -73,6 +73,7 @@ public class WeatherApi {
                 this.description = weatherData.weather[0].description;
                 this.weatherID = weatherData.weather[0].id;
 
+
             //Wenn Fehler auftritt wird dies Ausgegeben:
             } else {
                 System.err.println("❌ Fehler bei der API-Abfrage. Statuscode: " + response.statusCode());
