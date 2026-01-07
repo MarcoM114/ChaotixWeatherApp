@@ -1,4 +1,5 @@
 package com.example.chaotixweatherapp;
+import com.example.chaotixweatherapp.WeatherApi;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,8 +34,11 @@ public class HelloController {
 
     @FXML
     private void onOkClick() throws IOException {
+
+
         String city = locationBox.getValue();
         String unit = unitBox.getValue();
+        WeatherApi test = new WeatherApi(locationBox.getValue(), "Celsius");
 
         System.out.println("OK geklickt");
         System.out.println("Standort: " + city);
