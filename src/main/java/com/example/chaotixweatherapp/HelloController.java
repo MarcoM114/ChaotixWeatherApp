@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class HelloController {
     WeatherApi weatherApi = new WeatherApi();
 
     @FXML
-    private ComboBox<String> locationBox;
+    private TextField locationBox;
 
     @FXML
     private ComboBox<String> unitBox;
@@ -30,18 +31,17 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        locationBox.getItems().addAll("Wien", "Berlin", "Zürich");
+
         unitBox.getItems().addAll("Celsius", "Fahrenheit");
 
         // optional defaults to avoid null values:
-        locationBox.getSelectionModel().selectFirst();
         unitBox.getSelectionModel().select("Celsius");
     }
 
     @FXML
     private void onOkClick() throws IOException {
 
-        String city = locationBox.getValue();
+        String city = locationBox.getText();
         String unit = unitBox.getValue();
 
         // Abfrage an die API; return String Array; data[0]=temp   data[1]=description

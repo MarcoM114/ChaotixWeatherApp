@@ -4,44 +4,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER"
-      spacing="25"
-      xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.chaotixweatherapp.HelloController">
+<VBox alignment="CENTER" spacing="25" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.HelloController">
 
     <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
+        <Insets bottom="30" left="30" right="30" top="30" />
     </padding>
 
     <ImageView fitWidth="350" preserveRatio="true">
         <image>
-            <Image url="@chaotix_weather.png"/>
+            <Image url="@chaotix_weather.png" />
         </image>
     </ImageView>
 
-    <Label text="Bitte wählen Sie aus:"
-           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+    <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Bitte wählen Sie aus:" />
 
-    <HBox spacing="20" alignment="CENTER">
-        <ComboBox fx:id="locationBox"
-                  promptText="Standort"
-                  prefWidth="180"/>
+    <HBox alignment="CENTER" spacing="20">
+      <TextField fx:id="locationBox" prefHeight="25.0" prefWidth="182.0" promptText="Standort " />
 
-        <ComboBox fx:id="unitBox"
-                  promptText="Temperatureinheit"
-                  prefWidth="180"/>
+        <ComboBox fx:id="unitBox" prefWidth="180" promptText="Temperatureinheit" />
     </HBox>
 
-    <Button fx:id="okButton"
-            text="OK"
-            prefWidth="120"
-            onAction="#onOkClick"
-            style="-fx-font-size: 14px;"/>
+    <Button fx:id="okButton" onAction="#onOkClick" prefWidth="120" style="-fx-font-size: 14px;" text="OK" />
 
 </VBox>
