@@ -37,7 +37,19 @@ public class WeatherApi {
     public WeatherApi() {
     }
 
+    /*
+    Wenn man diese Methode aufruft, wird eine Abfrage über die openweathermap API gemacht
 
+    Man muss den Standort und die Einheit ("Celsius" oder "Fahrenheit") übergeben.
+
+    Man bekommt ein String Array zurück, der folgendermaßen aussieht:
+    String[0] = Temperatur
+    String[1] = Wetterbeschreibung
+
+    Bei einem Fehler sieht derr Array folgendermaßen aus:
+    String[0] = "FEHLER"
+    String[1] = Fehlermeldung
+     */
     public String[] getWeatherData(String location, String unit){
         this.location = location;
 
@@ -76,21 +88,50 @@ public class WeatherApi {
                 this.actualLocation = weatherData.name;
                 this.description = weatherData.weather[0].description;
                 this.weatherID = weatherData.weather[0].id;
+                System.out.println(this.weatherID);
 
-                this.dataW[0] = Double.toString(this.temp);
-                this.dataW[1] = this.description;
+                this.dataW[0] = Double.toString(this.temp);  //Temperatur wird in Array an erster Stelle gespeichert
+
+                // 7. Icon Zuordnung und Beschreibung:
+
+                int weatherIDFirst = (int)(weatherID / 100);
+
+                if (weatherIDFirst == 2){
+                    this.description = "Gewitter";
+                } else if (weatherIDFirst == 3 || weatherIDFirst == 5) {
+                    this.description = "Regen";
+                } else if (weatherIDFirst == 6) {
+                    this.description = "Schnee";
+                } else if (weatherIDFirst == 7) {
+                    this.description = "Nebel";
+                } else if (weatherID == 800) {
+                    this.description = "Klar";
+                } else if (weatherID >800) {
+                    this.description = "Bewölkt";
+                }else {
+                    this.description = "No Icon";
+                }
+                this.dataW[1] = this.description; // Wird in Array gespeichert
 
 
-            //Wenn Fehler auftritt wird dies Ausgegeben:
+                //Wenn Fehler auftritt wird dies Ausgegeben:
             } else {
-                System.err.println("❌ Fehler bei der API-Abfrage. Statuscode: " + response.statusCode());
+                System.err.println("Fehler bei der API-Abfrage. Statuscode: " + response.statusCode());
                 System.err.println("   Meldung: " + response.body());
                 System.err.println("   Stellen Sie sicher, dass Ihr API-Key korrekt ist und der Ort existiert.");
+
+                dataW[0] = "FEHLER";
+                if (response.statusCode() == 404){
+                    dataW[1] = "Name des Standortes nicht bekannt!";
+                }
             }
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            System.err.println("❌ Fehler beim Senden der HTTP-Anfrage: " + e.getMessage());
+            System.err.println("Fehler beim Senden der HTTP-Anfrage: " + e.getMessage());
+
+            dataW[0] = "FEHLER";
+            dataW[1] = "Server konnte nicht erreicht werden";
         }
 
         return this.dataW; //Gibt die Wetterdaten zurück als Array von Strings
