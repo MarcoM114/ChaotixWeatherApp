@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class HelloController {
 
-    // Array von API Klasse
+    // Array für API WeatherApi Objekt
     String[] weatherData = new String[2];
     WeatherApi weatherApi = new WeatherApi();
 
@@ -44,7 +44,8 @@ public class HelloController {
         String city = locationBox.getText();
         String unit = unitBox.getValue();
 
-        // Abfrage an die API; return String Array; data[0]=temp   data[1]=description
+        // Abfrage an die API; return String Array;
+        // weatherData[0]=temp   weatherData[1]=description
         weatherData = weatherApi.getWeatherData(city, unit);
 
         System.out.println("OK geklickt");
