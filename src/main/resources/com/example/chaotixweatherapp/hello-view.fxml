@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="472.0" prefWidth="492.0" spacing="25" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.HelloController">
+<VBox alignment="CENTER" prefHeight="520.0" prefWidth="520.0" spacing="25" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.HelloController">
 
     <padding>
         <Insets bottom="30" left="30" right="30" top="30" />

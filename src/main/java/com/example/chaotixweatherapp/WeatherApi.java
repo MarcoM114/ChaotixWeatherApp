@@ -77,11 +77,11 @@ public class WeatherApi {
                 WeatherJson.WeatherToGet weatherData = gson.fromJson(jsonResponse, WeatherJson.WeatherToGet.class);
 
                 //Temperatur Umrechnung °C in Fahrenheit, wenn nötig:
-                if (unit == "Celsius"){
+                if (unit.equals("Celsius")){
                     this.temp = weatherData.main.temp; //Weil Abfrage return in °C wegen "metric"
                 }
                 else {
-                    this.temp = (weatherData.main.temp * (9/5) +32);
+                    this.temp = (weatherData.main.temp * (9.0/5.0) +32);
                 }
 
                 // 6. Restliche Ergebnisse in Variablen speichern:

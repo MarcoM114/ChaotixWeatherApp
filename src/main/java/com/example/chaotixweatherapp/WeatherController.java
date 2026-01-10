@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class WeatherController {
 
@@ -22,9 +23,6 @@ public class WeatherController {
 
     @FXML
     private Label tempLabel;
-
-    @FXML
-    private Label descripLabel;
 
     @FXML
     private Label conditionLabel;
@@ -45,29 +43,35 @@ public class WeatherController {
         }else {
             unitSymbol = "°F";
         }
-
+        String condition = weatherData[1];
         headlineLabel.setText("In " + city + " hat es gerade:");
         tempLabel.setText(weatherData[0] + " " + unitSymbol);
-        conditionLabel.setText(weatherData[1] + ":");
+        conditionLabel.setText(condition + ":");
 
-        // optional icon switch
-        // put files like snowflake.png / rain.png into resources same folder as FXML
-        /*
-        String iconFile = switch (data.iconKey()) {
-            case "snow" -> "snowflake.png";
-            case "rain" -> "rain.png";
-            case "sun"  -> "sun.png";
-            default     -> "cloud.png";
-            };
-
+        String iconFile = getIconFile(condition);
         try {
-            Image img = new Image(getClass().getResourceAsStream(iconFile));
+            Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/" + iconFile)));
             iconView.setImage(img);
-        } catch (Exception ignored) {
-            // if icon missing, just keep whatever is set in FXML
+        } catch (Exception e) {
+            System.err.println("Icon not found: icons/" + iconFile);
         }
 
-         */
+    }
+    private String getIconFile(String condition) {
+        if (condition == null) return "cloudy.png";
+
+        // normalize (lowercase, trim)
+        String d = condition.trim().toLowerCase();
+
+        return switch (d) {
+            case "gewitter" -> "storm.png";
+            case "regen"    -> "rain.png";
+            case "schnee"   -> "snow.png";
+            case "nebel"    -> "nebel.png";
+            case "klar"     -> "clear.png";
+            case "bewölkt"  -> "cloudy.png";
+            default         -> "cloudy.png";
+        };
     }
 
     @FXML
@@ -78,7 +82,7 @@ public class WeatherController {
         Parent root = loader.load();
 
         Stage stage = (Stage) headlineLabel.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root , 520, 520));
         stage.show();
     }
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="472.0" prefWidth="492.0" spacing="25" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.WeatherController">
+<VBox alignment="CENTER" prefHeight="520.0" prefWidth="520.0" spacing="25" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.WeatherController">
 
     <padding>
         <Insets bottom="30" left="30" right="30" top="30" />
@@ -28,7 +28,7 @@
 
     <Label fx:id="headlineLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="In ___ hat es gerade:" />
 
-    <Label fx:id="tempLabel" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="0 °C" />
+    <Label fx:id="tempLabel" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="0  °C" />
 
     <Label fx:id="conditionLabel" style="-fx-font-size: 22px;" text="Es schneit:" />
 
