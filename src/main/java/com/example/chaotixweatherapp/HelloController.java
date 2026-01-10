@@ -41,6 +41,12 @@ public class HelloController {
         // optional defaults to avoid null values:
         unitBox.getSelectionModel().select("Celsius");
         if (errorLabel != null) errorLabel.setText("");
+        okButton.setDefaultButton(true);
+
+        locationBox.setOnAction(e -> {
+            try { onOkClick(); } catch (IOException ex) { ex.printStackTrace(); }
+        });
+
     }
 
     @FXML
@@ -53,8 +59,10 @@ public class HelloController {
             if (errorLabel != null) errorLabel.setText("Bitte gib einen (der) Ort ein.");
             return;
         }
+
         // Abfrage an die API; return String Array;
         // weatherData[0]=temp   weatherData[1]=description
+
         weatherData = weatherApi.getWeatherData(city, unit);
         if (weatherData == null || weatherData.length < 2 || "FEHLER".equals(weatherData[0])) {
             String msg = (weatherData != null && weatherData.length >= 2) ? weatherData[1] : "Unbekannter Fehler.";
@@ -74,5 +82,8 @@ public class HelloController {
         Stage stage = (Stage) okButton.getScene().getWindow();
         stage.setScene(new Scene(root, 520, 520));
         stage.show();
-    }
+
+
 }
+
+    }
