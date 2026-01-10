@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -30,6 +31,8 @@ public class HelloController {
     @FXML
     private Button okButton;
 
+    @FXML private Label errorLabel;
+
     @FXML
     public void initialize() {
 
@@ -37,26 +40,32 @@ public class HelloController {
 
         // optional defaults to avoid null values:
         unitBox.getSelectionModel().select("Celsius");
+        if (errorLabel != null) errorLabel.setText("");
     }
 
     @FXML
     private void onOkClick() throws IOException {
+        if (errorLabel != null) errorLabel.setText("");
 
-        String city = locationBox.getText();
+        String city = locationBox.getText()== null ? "" : locationBox.getText().trim();
         String unit = unitBox.getValue();
-
+        if (city.isEmpty()) {
+            if (errorLabel != null) errorLabel.setText("Bitte gib einen (der) Ort ein.");
+            return;
+        }
         // Abfrage an die API; return String Array;
         // weatherData[0]=temp   weatherData[1]=description
         weatherData = weatherApi.getWeatherData(city, unit);
+        if (weatherData == null || weatherData.length < 2 || "FEHLER".equals(weatherData[0])) {
+            String msg = (weatherData != null && weatherData.length >= 2) ? weatherData[1] : "Unbekannter Fehler.";
+            if (errorLabel != null) errorLabel.setText(msg);
+            return;
+        }
 
-        System.out.println("OK geklickt");
-        System.out.println("Standort: " + city);
-        System.out.println("Einheit: " + unit);
 
         FXMLLoader loader = new FXMLLoader(
                 WeatherApp.class.getResource("weather-view.fxml")
         );
-
         Parent root = loader.load();
 
         WeatherController controller = loader.getController();
