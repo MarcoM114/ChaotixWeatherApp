@@ -50,7 +50,7 @@ public class HelloController {
         String city = locationBox.getText()== null ? "" : locationBox.getText().trim();
         String unit = unitBox.getValue();
         if (city.isEmpty()) {
-            if (errorLabel != null) errorLabel.setText("Bitte gib einen (der) Ort ein.");
+            if (errorLabel != null) errorLabel.setText("Bitte gib einen Standort ein.");
             return;
         }
         // Abfrage an die API; return String Array;
