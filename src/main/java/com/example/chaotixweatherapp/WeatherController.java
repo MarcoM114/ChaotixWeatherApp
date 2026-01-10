@@ -32,8 +32,6 @@ public class WeatherController {
     @FXML
     private ImageView iconView;
 
-    private final API api = new API();
-
 
     /**
      * Call this right after loading the FXML (from HelloController).
@@ -42,7 +40,7 @@ public class WeatherController {
 
 
 
-        if (unit == "Celsius"){
+        if (unit.equals("Celsius")){
             unitSymbol ="°C";
         }else {
             unitSymbol = "°F";
