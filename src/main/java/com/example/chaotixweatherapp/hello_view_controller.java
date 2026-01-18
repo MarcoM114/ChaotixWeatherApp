@@ -1,5 +1,10 @@
 package com.example.chaotixweatherapp;
 
+/*
+
+
+ */
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-// das ist ein Test
+
 public class hello_view_controller {
 
     // Array für API WeatherApi Objekt
