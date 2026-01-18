@@ -4,9 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -28,7 +30,12 @@ public class WeatherController {
     private Label conditionLabel;
 
     @FXML
+    private Button commentButton;
+
+
+    @FXML
     private ImageView iconView;
+
 
 
     /**
@@ -47,6 +54,63 @@ public class WeatherController {
         headlineLabel.setText("In " + city + " hat es gerade:");
         tempLabel.setText(weatherData[0] + " " + unitSymbol);
         conditionLabel.setText(condition + ":");
+
+
+        // Kommentare witzig
+        String commentText;
+        String c = condition.toLowerCase();
+        if (c.contains("schnee")) {
+            commentText = "❄ Oaschkalt...";
+        } else if (c.contains("bewölkt")) {
+            commentText = "Da könn ma nur eins sagen:";
+        } else if (c.contains("regen")) {
+            commentText = "🌧 Bussi, Baba! I bleib daham!";
+        } else if (c.contains("klar")) {
+            commentText = "☀ Ur Geiles Wetta!";
+        } else if (c.contains("gewitter")) {
+            commentText = "⚡ na bist du gscheit!";
+        } else if (c.contains("nebel")) {
+            commentText = "🌫 oida, I siag nix aussi!";
+        } else {
+            commentText = "";
+        }
+
+        commentButton.setOnAction(e -> {
+            if (!commentText.isEmpty()) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource("/com/example/chaotixweatherapp/POP-UP.fxml")
+                    );
+                    VBox root = loader.load();
+
+                    // Controller richtig referenzieren
+                    POP_UP_CONTROLLER popupController = loader.getController();
+                    popupController.setCommentText(commentText);
+
+                    // Meme passend zur Wetterbedingung
+                    switch (c) {
+                        case "schnee" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/snow_meme.png");
+                        case "regen" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/regen_meme.png");
+                        case "klar" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/klar_meme.png");
+                        case "gewitter" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/gewitter_meme.png");
+                        case "nebel" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/nebel_meme.png");
+                        case "bewölkt" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/bewöklt_meme.png");
+                    }
+
+                    Stage popup = new Stage();
+                    popup.initOwner(commentButton.getScene().getWindow());
+                    popup.setTitle("Wetter-Kommentar");
+                    popup.setScene(new javafx.scene.Scene(root));
+                    popup.show();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+
+
+
 
         String iconFile = getIconFile(condition);
         try {

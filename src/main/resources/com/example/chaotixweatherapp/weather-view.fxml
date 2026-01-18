@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -8,30 +7,49 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="520.0" prefWidth="520.0" spacing="25" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.WeatherController">
+<VBox alignment="CENTER" fillWidth="false" spacing="25" style="-fx-background-color: radial-gradient(center 50% 50%, radius 50%, #e6ebef 0%, #e6ebef 85%, #a3b0b8 100%); -fx-background-insets: 0; -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.WeatherController">
 
-    <padding>
-        <Insets bottom="30" left="30" right="30" top="30" />
-    </padding>
+    <!-- CARD -->
+    <VBox alignment="CENTER" spacing="20" style="-fx-background-color: linear-gradient(             from 0% 0% to 0% 100%,             #ffffff,             #dbefff         ); -fx-background-radius: 56; -fx-padding: 38; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 24, 0.25, 0, 6);">
 
-    <HBox alignment="CENTER_LEFT" spacing="10">
-        <Button onAction="#onBackClick" prefHeight="22.0" prefWidth="27.0" style="-fx-font-size: 10;" text="&lt;" />
-        <Region HBox.hgrow="ALWAYS" />
-    </HBox>
+        <!-- BACK BUTTON -->
+        <HBox alignment="CENTER_LEFT">
+            <Button onAction="#onBackClick" style="-fx-font-size: 14; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="←" />
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
 
-    <ImageView fitWidth="350" preserveRatio="true">
-        <image>
-            <Image url="@chaotix_weather.png" />
-        </image>
-    </ImageView>
+        <!-- LOGO -->
+        <ImageView fitWidth="100.0" preserveRatio="true">
+            <image>
+                <Image url="@chaotix_weather.png" />
+            </image>
+        </ImageView>
 
-    <Label fx:id="headlineLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="In ___ hat es gerade:" />
+        <!-- TEXT -->
+        <Label fx:id="headlineLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="In ___ hat es gerade:" />
 
-    <Label fx:id="tempLabel" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="0  °C" />
+        <Label fx:id="tempLabel" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="0 °C">
+         <font>
+            <Font size="6.0" />
+         </font></Label>
 
-    <Label fx:id="conditionLabel" style="-fx-font-size: 22px;" text="Es schneit:" />
+        <Label fx:id="conditionLabel" style="-fx-font-size: 22px;" text="Es schneit:" />
 
-    <ImageView fx:id="iconView" fitWidth="120" preserveRatio="true" />
+
+
+
+
+        <Button fx:id="commentButton" alignment="CENTER" maxWidth="150" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="💬 Kommentar" wrapText="true" />
+
+
+
+
+
+        <!-- ICON -->
+        <ImageView fx:id="iconView" fitWidth="120" preserveRatio="true" />
+
+    </VBox>
 
 </VBox>
