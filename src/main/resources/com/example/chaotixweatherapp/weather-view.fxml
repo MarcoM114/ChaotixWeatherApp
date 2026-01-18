@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -12,20 +11,19 @@
 <VBox alignment="CENTER" fillWidth="false" spacing="25" style="-fx-background-color: radial-gradient(center 50% 50%, radius 50%, #e6ebef 0%, #e6ebef 85%, #a3b0b8 100%); -fx-background-insets: 0; -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.weather_view_controller">
 
     <!-- CARD -->
-    <VBox alignment="CENTER" spacing="20" style="-fx-background-color: linear-gradient(             from 0% 0% to 0% 100%,             #ffffff,             #dbefff         ); -fx-background-radius: 56; -fx-padding: 38; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 24, 0.25, 0, 6);">
+    <VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" spacing="20" style="-fx-background-color: linear-gradient(             from 0% 0% to 0% 100%,             #ffffff,             #dbefff         ); -fx-background-radius: 56; -fx-padding: 38; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 24, 0.25, 0, 6);">
 
         <!-- BACK BUTTON -->
         <HBox alignment="CENTER_LEFT">
             <Button onAction="#onBackClick" style="-fx-font-size: 14; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="←" />
-            <Region HBox.hgrow="ALWAYS" />
+            <Region prefHeight="7.0" prefWidth="361.0" HBox.hgrow="ALWAYS" />
+   
+   
+   
+   
+   
+           <Button fx:id="commentButton" alignment="CENTER" maxWidth="150" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="💬" wrapText="true" />
         </HBox>
-
-        <!-- LOGO -->
-        <ImageView fitWidth="100.0" preserveRatio="true">
-            <image>
-                <Image url="@chaotix_weather.png" />
-            </image>
-        </ImageView>
 
         <!-- TEXT -->
         <Label fx:id="headlineLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="In ___ hat es gerade:" />
@@ -36,12 +34,6 @@
          </font></Label>
 
         <Label fx:id="conditionLabel" style="-fx-font-size: 22px;" text="Es schneit:" />
-
-
-
-
-
-        <Button fx:id="commentButton" alignment="CENTER" maxWidth="150" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="💬 Kommentar" wrapText="true" />
 
 
 
