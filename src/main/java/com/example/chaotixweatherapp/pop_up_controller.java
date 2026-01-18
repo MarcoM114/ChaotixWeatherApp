@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class POP_UP_CONTROLLER {
+public class pop_up_controller {
 
     @FXML
     private Label commentLabel;

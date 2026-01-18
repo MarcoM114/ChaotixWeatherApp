@@ -1,7 +1,4 @@
 package com.example.chaotixweatherapp;
-import com.example.chaotixweatherapp.WeatherApi;
-import com.google.gson.Gson;
-import com.example.chaotixweatherapp.WeatherJson;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 // das ist ein Test
-public class HelloController {
+public class hello_view_controller {
 
     // Array für API WeatherApi Objekt
     String[] weatherData = new String[2];
@@ -76,7 +73,7 @@ public class HelloController {
         );
         Parent root = loader.load();
 
-        WeatherController controller = loader.getController();
+        weather_view_controller controller = loader.getController();
         controller.initData(city, unit, weatherData);  //Daten werden an anderen Controller übergeben
 
         Stage stage = (Stage) okButton.getScene().getWindow();

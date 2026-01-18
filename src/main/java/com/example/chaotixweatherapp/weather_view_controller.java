@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class WeatherController {
+public class weather_view_controller {
 
     String unitSymbol;
 
@@ -79,22 +79,22 @@ public class WeatherController {
             if (!commentText.isEmpty()) {
                 try {
                     FXMLLoader loader = new FXMLLoader(
-                            getClass().getResource("/com/example/chaotixweatherapp/POP-UP.fxml")
+                            getClass().getResource("/com/example/chaotixweatherapp/pop-up.fxml")
                     );
                     VBox root = loader.load();
 
                     // Controller richtig referenzieren
-                    POP_UP_CONTROLLER popupController = loader.getController();
+                    pop_up_controller popupController = loader.getController();
                     popupController.setCommentText(commentText);
 
                     // Meme passend zur Wetterbedingung
                     switch (c) {
-                        case "schnee" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/snow_meme.png");
+                        case "schnee" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/schnee_meme.png");
                         case "regen" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/regen_meme.png");
                         case "klar" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/klar_meme.png");
                         case "gewitter" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/gewitter_meme.png");
                         case "nebel" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/nebel_meme.png");
-                        case "bewölkt" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/bewöklt_meme.png");
+                        case "bewölkt" -> popupController.setMemeImage("/com/example/chaotixweatherapp/memes/bewölkt_meme.png");
                     }
 
                     Stage popup = new Stage();
