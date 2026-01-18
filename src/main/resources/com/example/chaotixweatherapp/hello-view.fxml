@@ -13,7 +13,7 @@
 <VBox alignment="CENTER" fillWidth="false" spacing="25" style="-fx-background-color: radial-gradient(center 50% 50%, radius 50%, #e6ebef 0%, #e6ebef 85%, #a3b0b8 100%);; -fx-background-insets: 0; -fx-font-family: Segoe UI; -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chaotixweatherapp.HelloController">
 
     <!-- CARD -->
-    <VBox alignment="CENTER" spacing="20" style="-fx-background-color: linear-gradient(             from 0% 0% to 0% 100%,             #ffffff,             #dbefff         ); -fx-background-radius: 56; -fx-padding: 38; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 24, 0.25, 0, 6);">
+    <VBox alignment="CENTER" prefHeight="500.0" prefWidth="500.0" spacing="20" style="-fx-background-color: linear-gradient(             from 0% 0% to 0% 100%,             #ffffff,             #dbefff         ); -fx-background-radius: 56; -fx-padding: 38; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 24, 0.25, 0, 6);">
 
         <ImageView fitWidth="200" preserveRatio="true">
             <image>
