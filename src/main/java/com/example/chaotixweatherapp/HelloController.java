@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+// das ist ein Test
 public class HelloController {
 
     // Array für API WeatherApi Objekt
