@@ -15,14 +15,14 @@
 
         <!-- BACK BUTTON -->
         <HBox alignment="CENTER_LEFT">
-            <Button onAction="#onBackClick" style="-fx-font-size: 14; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="←" />
+            <Button onAction="#onBackClick" prefHeight="43.0" prefWidth="58.0" style="-fx-font-size: 15; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="←" />
             <Region prefHeight="7.0" prefWidth="361.0" HBox.hgrow="ALWAYS" />
    
    
    
    
    
-           <Button fx:id="commentButton" alignment="CENTER" maxWidth="150" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="💬" wrapText="true" />
+           <Button fx:id="commentButton" alignment="CENTER" maxWidth="150" prefHeight="45.0" prefWidth="62.0" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="💬" wrapText="true" />
         </HBox>
 
         <!-- TEXT -->
