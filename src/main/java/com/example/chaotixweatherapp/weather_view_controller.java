@@ -71,7 +71,7 @@ public class weather_view_controller {
         } else if (c.contains("bewölkt")) {
             commentText = "Da könn ma nur eins sagen:";
         } else if (c.contains("regen")) {
-            commentText = "🌧 Bussi, Baba! I bleib daham!";
+            commentText = "🌧 Bussi, Baba! I bleib dahoam!";
         } else if (c.contains("klar")) {
             commentText = "☀ Ur Geiles Wetta!";
         } else if (c.contains("gewitter")) {
