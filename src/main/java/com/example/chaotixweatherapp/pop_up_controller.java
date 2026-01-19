@@ -20,22 +20,30 @@ public class pop_up_controller {
     @FXML
     private Button closeButton;
 
+
+    //Wenn der Benutzer auf „Schließen“ klickt → Fenster schließen, Hilfestellung von hier: https://www.reddit.com/r/javahelp/comments/nn09qw/cant_use_getscenegetwindow_in_javafx_why/
     @FXML
     public void initialize() {
         closeButton.setOnAction(e -> ((Stage) closeButton.getScene().getWindow()).close());
     }
 
+    // diese Methode setzt den Text im PopUP
     public void setCommentText(String text) {
         commentLabel.setText(text);
     }
 
+
+    // diese Methode setzt das Bild im PopUP
+
     public void setMemeImage(String imagePath) {
-        try {
-            memeImage.setImage(new Image(
-                    Objects.requireNonNull(getClass().getResourceAsStream(imagePath))
-            ));
-        } catch (Exception e) {
-            System.err.println("Meme not found: " + imagePath);
-        }
+
+        // das Bild wird aus dem Projektordner geladen, der Pfad imagePath wird übergeben
+        // das Bild wird dann im PopUP angezeigt
+        memeImage.setImage(new Image(
+                Objects.requireNonNull(getClass().getResourceAsStream(imagePath))
+        ));
     }
+
+
+
 }

@@ -1,4 +1,8 @@
 package com.example.chaotixweatherapp;
+/*
+Dieser Controller steuert den Bildschirm, der das Wetter anzeigt.
+Also den hauptbildschirm nach der Startseite
+ */
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +21,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class weather_view_controller {
+
+    //
 
     String unitSymbol;
 
@@ -38,25 +44,26 @@ public class weather_view_controller {
 
 
 
-    /**
-     * Call this right after loading the FXML (from HelloController).
-     */
+// Diese Methode wird aufgerufen, sobald der Controller geladen ist., also Stadt, Einheit und die Wetterdaten der API
     public void initData(String city, String unit, String[] weatherData) {
 
 
-
+// das Einheit-Symbol wird hier automatisch zugeordnet mit einer einfachen if-else Anweisung
         if (unit.equals("Celsius")){
             unitSymbol ="°C";
         }else {
             unitSymbol = "°F";
         }
+
+        // Hier werden die Wetterinformationen für die jeweiligen Labels, die zuvor in Java FX erstellt wurden
+        // zugewiesen
         String condition = weatherData[1];
         headlineLabel.setText("In " + city + " hat es gerade:");
         tempLabel.setText(weatherData[0] + " " + unitSymbol);
         conditionLabel.setText(condition + ":");
 
 
-        // Kommentare witzig
+        // Kommentare witzig, werden hier erstellt, mit ganz einfachen if-else Anweisungen
         String commentText;
         String c = condition.toLowerCase();
         if (c.contains("schnee")) {
@@ -74,6 +81,10 @@ public class weather_view_controller {
         } else {
             commentText = "";
         }
+
+        // der KommentarButton wird hier hinzugefügt
+        // wenn der Button geklickt wird wird das POPUP FXML geladen
+        // dann bekommt der Controller des Pop UPs den text und das Meme und das POP UP wird angezeigt
 
         commentButton.setOnAction(e -> {
             if (!commentText.isEmpty()) {
@@ -111,7 +122,7 @@ public class weather_view_controller {
 
 
 
-
+// Hier wird das Wettericon ausgewählt
         String iconFile = getIconFile(condition);
         try {
             Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/" + iconFile)));
@@ -124,9 +135,10 @@ public class weather_view_controller {
     private String getIconFile(String condition) {
         if (condition == null) return "cloudy.png";
 
-        // normalize (lowercase, trim)
+        // Macht den Wettertext klein und sauber (to lowercase and trim)
         String d = condition.trim().toLowerCase();
 
+        // Wählt anhand des Texts das passende Icon
         return switch (d) {
             case "gewitter" -> "storm.png";
             case "regen"    -> "rain.png";
@@ -137,6 +149,8 @@ public class weather_view_controller {
             default         -> "cloudy.png";
         };
     }
+
+    // Zurück zur Startseite mit dem Back-Button
 
     @FXML
     private void onBackClick() throws IOException {
