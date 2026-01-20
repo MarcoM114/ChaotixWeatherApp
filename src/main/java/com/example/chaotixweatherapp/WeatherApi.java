@@ -27,12 +27,9 @@ public class WeatherApi {
     private Double temp;
     private String description;
     private int weatherID;
-    private String unit;
-    private String[] dataW = new String[2]; //return wert der Methode
+    private String[] dataW = new String[2]; //return Wert der Methode
 
     private String testUrl; // Für Test zwecke
-
-    //units = "Celsius" ODER "Fahrenheit"
 
     public WeatherApi() {
     }
@@ -154,6 +151,8 @@ public class WeatherApi {
     }
 
     /*
+    Test Bereich:
+
     public static void main(String[] args) {
 
         WeatherApi test = new WeatherApi();
@@ -164,9 +163,6 @@ public class WeatherApi {
 
         System.out.println(data[0]);
         System.out.println(data[1]);
-
-
-
     }
 
      */

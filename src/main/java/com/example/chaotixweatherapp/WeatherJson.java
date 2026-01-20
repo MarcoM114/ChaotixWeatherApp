@@ -4,17 +4,21 @@ package com.example.chaotixweatherapp;
 
 public class WeatherJson {
 
+    // In Main befinden sich die benötigten Wetter Daten
     public class Main{
         double temp;
         int pressure;
         int humidity;
     }
 
+    // Hier werden Werte innerhalb von Weather abgegriffen
     public class Weather{
         int id;
         String description;
     }
 
+    // Dies ist die "oberste" Ebene wo abgegriffen wird.
+    // Es wird Main ind Weather verwendet
     public class WeatherToGet{
         String name;
         Weather[] weather;
