@@ -27,9 +27,9 @@
          </font></Label>
 
         <HBox spacing="15">
-            <TextField fx:id="locationBox" prefHeight="26.0" prefWidth="268.0" promptText="Standort (z.B. : Salzburg, AT)" />
+            <TextField fx:id="locationBox" prefWidth="180" promptText="Standort (z.B. Wien, AT)" />
 
-            <ComboBox fx:id="unitBox" prefHeight="26.0" prefWidth="202.0" promptText="Temperatureinheit" style="-fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" />
+            <ComboBox fx:id="unitBox" prefWidth="180" promptText="Temperatureinheit" style="-fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" />
         </HBox>
 
         <Button fx:id="okButton" onAction="#onOkClick" prefWidth="140" style="-fx-font-size: 14px; -fx-background-radius: 20; -fx-background-color: white; -fx-effect: innershadow(gaussian, rgba(0,0,0,0.75), 5, 0.5, 0, 0); -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);" text="OK">
