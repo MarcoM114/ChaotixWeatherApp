@@ -1,7 +1,7 @@
 package com.example.chaotixweatherapp;
 /*
 Dieser Controller steuert den Bildschirm, der das Wetter anzeigt.
-Also den hauptbildschirm nach der Startseite
+Also den hauptbildschirm nach der Startseite..
  */
 
 import javafx.fxml.FXML;
