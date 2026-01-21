@@ -114,7 +114,7 @@ public class hello_view_controller {
         // Aktuelles Fenster wird ersetzt. mit der Größe 520x520
 
         Stage stage = (Stage) okButton.getScene().getWindow();
-        stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
+        stage.setScene(new Scene(root));
         stage.show();
 
 

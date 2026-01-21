@@ -293,7 +293,7 @@ public class weather_view_controller {
         Parent root = loader.load();
 
         Stage stage = (Stage) headlineLabel.getScene().getWindow();
-        stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
+        stage.setScene(new Scene(root));
         stage.show();
     }
 }
