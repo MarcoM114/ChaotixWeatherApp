@@ -20,7 +20,7 @@ Mithilfe von methoden kann man nun auf die Datensätze zugreifen (getter Methode
  */
 public class WeatherApi {
 
-    private String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
+    private final String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
     private final String API_KEY = "8d70c3c6ff67fc01f5fc58fb531d9e3b";
     private String location;
     private String actualLocation;
@@ -28,7 +28,7 @@ public class WeatherApi {
     private String description;
     private int weatherID;
     private String unit;
-    private String[] dataW = new String[2]; //return wert der Methode
+    private final String[] dataW = new String[2]; //return wert der Methode
 
     private String testUrl; // Für Test zwecke
 
@@ -94,7 +94,7 @@ public class WeatherApi {
 
                 // 7. Icon Zuordnung und Beschreibung:
 
-                int weatherIDFirst = (int)(weatherID / 100);
+                int weatherIDFirst = weatherID / 100;
 
                 if (weatherIDFirst == 2){
                     this.description = "Gewitter";

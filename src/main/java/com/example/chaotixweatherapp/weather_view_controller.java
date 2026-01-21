@@ -15,7 +15,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,9 +29,13 @@ import java.util.Random;
 
 public class weather_view_controller {
 
-    //
 
-    String unitSymbol;
+
+    protected String unitSymbol;
+//   adding sound : https://youtu.be/J07HiaaYwis?si=edsPJFgDwctaxf0w
+    private boolean soundEnabled = true;
+    private Clip weatherClip;
+    private String lastCondition = "";
 
     @FXML
     private Label headlineLabel;
@@ -38,7 +48,8 @@ public class weather_view_controller {
 
     @FXML
     private Button commentButton;
-
+    @FXML
+    private Button soundButton;
     @FXML
     private ImageView iconView;
 
@@ -58,7 +69,9 @@ public class weather_view_controller {
         headlineLabel.setText("In " + city + " hat es gerade:");
         tempLabel.setText(weatherData[0] + " " + unitSymbol);
         conditionLabel.setText(condition + ":");
-
+        lastCondition = condition;
+        updateSoundButtonUI ( );
+       updateWeatherSound ( condition );
         // Kommentare witzig, werden hier erstellt, mit ganz einfachen if-else Anweisungen
         String commentText;
         String c = condition.toLowerCase();
@@ -140,6 +153,91 @@ public class weather_view_controller {
         };
     }
 
+    @FXML
+    private void onSoundToggle() {
+        soundEnabled = !soundEnabled;
+        updateSoundButtonUI();
+
+        if (soundEnabled) {
+            updateWeatherSound(lastCondition);
+        } else {
+            stopWeatherSound();
+        }
+    }
+
+    private void updateSoundButtonUI() {
+        if (soundButton != null) {
+            soundButton.setText(soundEnabled ? "🔊" : "🔇");
+        }
+    }
+
+    private void updateWeatherSound(String condition) {
+        if (!soundEnabled) return;
+
+        String soundFile = getSoundFile(condition);
+        if (soundFile == null) {
+            stopWeatherSound();
+            return;
+        }
+        playWeatherSound(soundFile);
+    }
+
+    //  WAV mapping
+    private String getSoundFile(String condition) {
+        if (condition == null) return "cloud-sound.wav";
+        String c = condition.trim().toLowerCase();
+
+        if (c.contains("schnee"))   return "snow-sound.wav";
+        if (c.contains("regen"))    return "rain-sound.wav";
+        if (c.contains("gewitter")) return "thunder-sound.wav";
+        if (c.contains("klar"))     return "sunny-sound.wav";
+        if (c.contains("bewölkt"))  return "cloud-sound.wav";
+        if (c.contains("nebel"))    return "fog-sound.wav";
+        return "cloud-sound.wav";
+    }
+
+    private void playWeatherSound(String fileName) {
+        stopWeatherSound();
+
+        try {
+            URL url = getClass().getResource("sounds/" + fileName);
+            if (url == null) {
+                System.err.println("Sound not found: " + fileName);
+                return;
+            }
+
+            try (AudioInputStream ais =
+                         AudioSystem.getAudioInputStream(new BufferedInputStream(url.openStream()))) {
+
+                weatherClip = AudioSystem.getClip();
+                weatherClip.open(ais);
+
+                // volume optional
+                if (weatherClip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+                    FloatControl gain = (FloatControl) weatherClip.getControl(FloatControl.Type.MASTER_GAIN);
+                    gain.setValue(-10.0f); // quieter
+                }
+
+                weatherClip.loop(Clip.LOOP_CONTINUOUSLY);
+                weatherClip.start();
+            }
+
+        } catch (Exception e) {
+            System.err.println("Could not play sound: " + fileName);
+            e.printStackTrace();
+            stopWeatherSound();
+        }
+    }
+
+    private void stopWeatherSound() {
+        try {
+            if (weatherClip != null) {
+                weatherClip.stop();
+                weatherClip.close();
+                weatherClip = null;
+            }
+        } catch (Exception ignored) {}
+    }
     // Random  Auswahl von memes pro wetter
     private String getRandomMeme(String condition) {
 
@@ -186,6 +284,7 @@ public class weather_view_controller {
     // Zurück zur Startseite mit dem Back-Button
     @FXML
     private void onBackClick() throws IOException {
+        stopWeatherSound();
         FXMLLoader loader = new FXMLLoader(
                 WeatherApp.class.getResource("hello-view.fxml")
         );
