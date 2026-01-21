@@ -186,16 +186,25 @@ public class weather_view_controller {
 
     //  WAV mapping
     private String getSoundFile(String condition) {
-        if (condition == null) return "cloud-sound.wav";
+
         String c = condition.trim().toLowerCase();
 
-        if (c.contains("schnee"))   return "snow-sound.wav";
-        if (c.contains("regen"))    return "rain-sound.wav";
-        if (c.contains("gewitter")) return "thunder-sound.wav";
-        if (c.contains("klar"))     return "sunny-sound.wav";
-        if (c.contains("bewölkt"))  return "cloud-sound.wav";
-        if (c.contains("nebel"))    return "fog-sound.wav";
-        return "cloud-sound.wav";
+        switch (c) {
+            case "schnee":
+                return "snow-sound.wav";
+            case "regen":
+                return "rain-sound.wav";
+            case "gewitter":
+                return "thunder-sound.wav";
+            case "klar":
+                return "sunny-sound.wav";
+            case "bewölkt":
+                return "cloud-sound.wav";
+            case "nebel":
+                return "fog-sound.wav";
+            default:
+                return "cloud-sound.wav";
+        }
     }
 
     private void playWeatherSound(String fileName) {
