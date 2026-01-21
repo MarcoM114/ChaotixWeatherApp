@@ -166,8 +166,10 @@ public class weather_view_controller {
     }
 
     private void updateSoundButtonUI() {
-        if (soundButton != null) {
-            soundButton.setText(soundEnabled ? "🔊" : "🔇");
+        if (soundEnabled) {
+            soundButton.setText("🔊");
+        } else {
+            soundButton.setText("🔇");
         }
     }
 
