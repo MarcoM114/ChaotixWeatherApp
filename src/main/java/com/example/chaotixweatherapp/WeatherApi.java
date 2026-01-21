@@ -20,19 +20,16 @@ Mithilfe von methoden kann man nun auf die Datensätze zugreifen (getter Methode
  */
 public class WeatherApi {
 
-    private final String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
+    private String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
     private final String API_KEY = "8d70c3c6ff67fc01f5fc58fb531d9e3b";
     private String location;
     private String actualLocation;
     private Double temp;
     private String description;
     private int weatherID;
-    private String unit;
-    private final String[] dataW = new String[2]; //return wert der Methode
+    private String[] dataW = new String[2]; //return Wert der Methode
 
     private String testUrl; // Für Test zwecke
-
-    //units = "Celsius" ODER "Fahrenheit"
 
     public WeatherApi() {
     }
@@ -94,7 +91,7 @@ public class WeatherApi {
 
                 // 7. Icon Zuordnung und Beschreibung:
 
-                int weatherIDFirst = weatherID / 100;
+                int weatherIDFirst = (int)(weatherID / 100);
 
                 if (weatherIDFirst == 2){
                     this.description = "Gewitter";
@@ -154,6 +151,8 @@ public class WeatherApi {
     }
 
     /*
+    Test Bereich:
+
     public static void main(String[] args) {
 
         WeatherApi test = new WeatherApi();
@@ -164,9 +163,6 @@ public class WeatherApi {
 
         System.out.println(data[0]);
         System.out.println(data[1]);
-
-
-
     }
 
      */
