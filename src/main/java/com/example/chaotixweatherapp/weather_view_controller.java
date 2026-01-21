@@ -173,17 +173,22 @@ public class weather_view_controller {
     }
 
     private void updateWeatherSound(String condition) {
-        if (!soundEnabled) return;
-
-        String soundFile = getSoundFile(condition);
-        if (soundFile == null) {
+        // If user muted sound -> do nothing
+        if (!soundEnabled) {
+            return;
+        }
+        // if condition is null -> stop sound
+        if (condition == null) {
             stopWeatherSound();
             return;
         }
+        // Get the correct file name for this weather
+        String soundFile = getSoundFile(condition);
+        // Play the sound
         playWeatherSound(soundFile);
     }
 
-    //  WAV mapping
+    //  mapping
     private String getSoundFile(String condition) {
 
         String c = condition.trim().toLowerCase();
@@ -199,7 +204,6 @@ public class weather_view_controller {
     }
 
     private void playWeatherSound(String fileName) {
-        stopWeatherSound();
 
         try {
             URL url = getClass().getResource("sounds/" + fileName);
@@ -211,18 +215,15 @@ public class weather_view_controller {
             try (AudioInputStream ais =
                          AudioSystem.getAudioInputStream(new BufferedInputStream(url.openStream()))) {
 
+                // play in a loop
                 weatherClip = AudioSystem.getClip();
                 weatherClip.open(ais);
 
-                // volume optional
-                if (weatherClip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
-                    FloatControl gain = (FloatControl) weatherClip.getControl(FloatControl.Type.MASTER_GAIN);
-                    gain.setValue(-10.0f); // quieter
                 }
 
                 weatherClip.loop(Clip.LOOP_CONTINUOUSLY);
                 weatherClip.start();
-            }
+
 
         } catch (Exception e) {
             System.err.println("Could not play sound: " + fileName);
