@@ -148,7 +148,6 @@ public class weather_view_controller {
             case "schnee"   -> "snow.png";
             case "nebel"    -> "nebel.png";
             case "klar"     -> "clear.png";
-            case "bewölkt"  -> "cloudy.png";
             default         -> "cloudy.png";
         };
     }
@@ -189,22 +188,14 @@ public class weather_view_controller {
 
         String c = condition.trim().toLowerCase();
 
-        switch (c) {
-            case "schnee":
-                return "snow-sound.wav";
-            case "regen":
-                return "rain-sound.wav";
-            case "gewitter":
-                return "thunder-sound.wav";
-            case "klar":
-                return "sunny-sound.wav";
-            case "bewölkt":
-                return "cloud-sound.wav";
-            case "nebel":
-                return "fog-sound.wav";
-            default:
-                return "cloud-sound.wav";
-        }
+       return switch (c) {
+            case "schnee"-> "snow-sound.wav";
+            case "regen"-> "rain-sound.wav";
+            case "gewitter"-> "thunder-sound.wav";
+            case "klar"-> "sunny-sound.wav";
+            case "nebel"-> "fog-sound.wav";
+            default -> "cloud-sound.wav";
+        };
     }
 
     private void playWeatherSound(String fileName) {
